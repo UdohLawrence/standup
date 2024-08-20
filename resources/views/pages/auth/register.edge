@@ -1,34 +1,65 @@
-@include('partials/header')
+@layout.app({title: 'Register'})
+
+<h1 class="text-center font-semibold text-2xl my-5">Register</h1>
 
 <form action="/register" method="post" class="flex flex-col gap-2 shadow-lg w-full max-w-lg mx-auto py-6 rounded-md">
   {{csrfField()}}
+
+  <div class="w-full max-w-md mx-auto flex flex-col sm:flex-row items-center justify-center gap-2">
+    <a href="#"><span class="flex items-center justify-between px-2 py-2 bg-blue-100 text-sm rounded-md shadow-sm">
+        <img src="/public/images/google.svg" class="w-6" />
+        Login with Google
+      </span>
+    </a>
+    <a href="#">
+      <span class="flex items-center justify-between px-2 py-2 text-sm bg-blue-100 rounded-md shadow-sm">
+        <img src="/public/images/facebook.svg" class="w-6" />
+        Login with Facebook
+      </span>
+    </a>
+  </div>
   <div class="w-full max-w-xs mx-auto">
     <label>First Name<span class="text-red-500"> *</span></label>
-    <input type="text" placeholder="First Name"
+    <input type="text" placeholder="First Name" name="first_name" id="first_name" value="{{ old('first_name') || ''}}"
       class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300" />
+    @inputError('first_name')
+    <span class="text-red-500 block text-xs justify-start">{{ $messages.join(', ') }}</span>
+    @end
   </div>
   <div class="w-full max-w-xs mx-auto">
     <label>Last Name<span class="text-red-500"> *</span></label>
-    <input type="text" placeholder="Last Name"
+    <input type="text" placeholder="Last Name" name="last_name" id="last_name" value="{{old('last_name') || ''}}"
       class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300" />
+    @inputError('last_name')
+    <span class="text-red-500 block text-xs justify-start">{{ $messages.join(', ') }}</span>
+    @end
   </div>
   <div class="w-full max-w-xs mx-auto">
     <label>Email<span class="text-red-500"> *</span></label>
-    <input type="text" placeholder="Email"
+    <input type="text" placeholder="Email" name="email" id="email" value="{{old('email')||''}}"
       class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300" />
+    @inputError('email')
+    <span class="text-red-500 block text-xs justify-start">{{ $messages.join(', ') }}</span>
+    @end
   </div>
   <div class="w-full max-w-xs mx-auto">
     <label>Password<span class="text-red-500"> *</span></label>
-    <input type="password" placeholder="Password"
+    <input type="password" placeholder="Password" name="password" id="password"
       class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300" />
+    @inputError('password')
+    <span class="text-red-500 block text-xs justify-start">{{ $messages.join(', ') }}</span>
+    @end
   </div>
   <div class="w-full max-w-xs mx-auto">
     <label>Confirm Password<span class="text-red-500"> *</span></label>
-    <input type="text" placeholder="Confirm Password"
+    <input type="password" placeholder="Confirm Password" name="password_confirmation" id="password_confirmation"
       class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300" />
+    @inputError('password_confirmation')
+    <span class="text-red-500 block text-xs justify-start">{{ $messages.join(', ') }}</span>
+    @end
   </div>
   <div class="w-full max-w-xs mx-auto">
     <button class="bg-blue-500 w-full mt-5 rounded-lg text-white font-semibold py-3">Register</button>
   </div>
 </form>
-@include('partials/footer')
+@end

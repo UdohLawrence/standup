@@ -1,5 +1,7 @@
-@include('partials/header')
-<main>
-
-</main>
-@include('partials/footer')
+@layout.app({title: 'Home'})
+@if(auth.user)
+<h1>Welcome, {{ auth.user.first_name }}</h1>
+@else
+<h1>You are a guest</h1>
+@end
+@end

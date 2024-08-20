@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html class="h-full">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}} | Rikjoy Standup</title>
+
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+
+<body class="h-full">
+  <header class="w-screen shadow-md">
+    <div class="flex items-center justify-between py-4 max-w-4xl mx-auto">
+      <a href="/"><h1 class="font-semibold">Standup</h1></a>
+      <nav>
+        @if(auth.user)
+        <div class="flex items-center gap-3">
+
+          <a href="#">Dashboard</a>
+          <form method="post" action="/logout">
+            {{csrfField()}}
+            <button type="submit">Logout</button>
+        </div>
+        @else
+        <div class="flex items-center gap-3">
+          <a href="/login">Login</a>
+          <a href="/register" class="bg-blue-500 py-2 px-3 rounded-md text-white font-semibold">Register</a>
+        </div>
+        @end
+
+      </nav>
+    </div>
+  </header>
+  <main class="max-w-4xl mx-auto px-4">
+    {{{ await $slots.main() }}}
+  </main>
+</body>
+
+</html>

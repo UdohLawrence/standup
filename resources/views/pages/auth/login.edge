@@ -1,34 +1,42 @@
-@include('partials/header')
+@layout.app({title: 'Login'})
+
+<h1 class="text-center font-semibold text-2xl my-5">Login</h1>
 
 <form action="/login" method="post" class="flex flex-col gap-2 shadow-lg w-full max-w-lg mx-auto py-6 rounded-md">
   {{csrfField()}}
 
-  <div class="w-full max-w-xs mx-auto flex sm:flex-row">
-    <a><span class="flex items-center justify-between px-2 py-3">
-        <img src="../../assets/images/google.svg" />
+  <div class="w-full max-w-md mx-auto flex flex-col sm:flex-row items-center justify-center gap-2">
+    <a href="#"><span class="flex items-center justify-between px-2 py-2 bg-blue-100 text-sm rounded-md shadow-sm">
+        <img src="/public/images/google.svg" class="w-6" />
         Login with Google
       </span>
     </a>
-    <a>
-      <span class="flex items-center justify-between px-2 py-3">
-        <img src="../../assets/images/facebook.svg" />
+    <a href="#">
+      <span class="flex items-center justify-between px-2 py-2 text-sm bg-blue-100 rounded-md shadow-sm">
+        <img src="/public/images/facebook.svg" class="w-6" />
         Login with Facebook
       </span>
     </a>
   </div>
   <div class="w-full max-w-xs mx-auto">
     <label>Email<span class="text-red-500"> *</span></label>
-    <input type="text" placeholder="Email"
-      class="flex w-full h-10 px-3 py-3 text-sm bg-white border rounded-md border-neutral-300" />
+    <input type="text" placeholder="Email" name="email" id="email" value="{{old('email')||''}}"
+      class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300" />
+    @inputError('email')
+    <span class="text-red-500 block text-xs justify-start">{{ $messages.join(', ') }}</span>
+    @end
   </div>
   <div class="w-full max-w-xs mx-auto">
     <label>Password<span class="text-red-500"> *</span></label>
-    <input type="password" placeholder="Password"
-      class="flex w-full h-10 px-3 py-3 text-sm bg-white border rounded-md border-neutral-300" />
+    <input type="password" placeholder="Password" name="password" id="password"
+      class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300" />
+    @inputError('password')
+    <span class="text-red-500 block text-xs justify-start">{{ $messages.join(', ') }}</span>
+    @end
   </div>
   <div class="w-full max-w-xs mx-auto">
     <button class="bg-blue-500 w-full mt-5 rounded-lg text-white font-semibold py-3">Login</button>
   </div>
 
 </form>
-@include('partials/footer')
+@end
