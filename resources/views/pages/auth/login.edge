@@ -5,6 +5,9 @@
 <form action="/login" method="post" class="flex flex-col gap-2 shadow-lg w-full max-w-lg mx-auto py-6 rounded-md">
   {{csrfField()}}
 
+  @error('E_INVALID_CREDENTIALS')
+  <p class="text-center text-red-500 my-3">{{$message}}</p>
+  @end
   <div class="w-full max-w-md mx-auto flex flex-col sm:flex-row items-center justify-center gap-2">
     <a href="#"><span class="flex items-center justify-between px-2 py-2 bg-blue-100 text-sm rounded-md shadow-sm">
         <img src="/public/images/google.svg" class="w-6" />
@@ -34,6 +37,7 @@
     <span class="text-red-500 block text-xs justify-start">{{ $messages.join(', ') }}</span>
     @end
   </div>
+  <p class="text-center">Not yet registered? <a href="/register" class="text-blue-500">Sign Up</a></p>
   <div class="w-full max-w-xs mx-auto">
     <button class="bg-blue-500 w-full mt-5 rounded-lg text-white font-semibold py-3">Login</button>
   </div>
